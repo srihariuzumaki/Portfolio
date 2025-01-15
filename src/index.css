@@ -149,6 +149,19 @@ body {
   .social-icon {
     @apply w-12 h-12 rounded-full flex justify-center items-center bg-black-300 border border-black-200;
   }
+
+  #custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1000;
+    transform: translate(-50%, -50%);
+  }
 }
 
 .waving-hand {
