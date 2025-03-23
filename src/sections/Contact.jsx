@@ -20,6 +20,8 @@ const Contact = () => {
     e.preventDefault();
     setLoading(true);
 
+    emailjs.init(import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY);
+
     emailjs
       .send(
         import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
@@ -30,8 +32,7 @@ const Contact = () => {
           from_email: form.email,
           to_email: 'srihariamit@gmail.com',
           message: form.message,
-        },
-        import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY,
+        }
       )
       .then(
         () => {
@@ -42,25 +43,33 @@ const Contact = () => {
             type: 'success',
           });
 
+          setForm({
+            name: '',
+            email: '',
+            message: '',
+          });
+
           setTimeout(() => {
-            hideAlert(false);
-            setForm({
-              name: '',
-              email: '',
-              message: '',
-            });
-          }, [3000]);
+            hideAlert();
+          }, 3000);
         },
         (error) => {
           setLoading(false);
-          console.error(error);
+          console.error('EmailJS Error:', error);
+          
+          let errorMessage = "Failed to send message. Please try again later 😢";
+          if (error.status === 400) {
+            errorMessage = "Invalid email configuration. Please check your email address.";
+          } else if (error.status === 403) {
+            errorMessage = "Email service is not properly configured.";
+          }
 
           showAlert({
             show: true,
-            text: "I didn't receive your message 😢",
+            text: errorMessage,
             type: 'danger',
           });
-        },
+        }
       );
   };
 
@@ -74,8 +83,8 @@ const Contact = () => {
         <div className="contact-container">
           <h3 className="head-text">Let's talk</h3>
           <p className="text-lg text-white-600 mt-3">
-            Whether you’re looking to build a new website, improve your existing platform, or bring a unique project to
-            life, I’m here to help.
+            Whether you're looking to build a new website, improve your existing platform, or bring a unique project to
+            life, I'm here to help.
           </p>
 
           <form ref={formRef} onSubmit={handleSubmit} className="mt-12 flex flex-col space-y-7">
