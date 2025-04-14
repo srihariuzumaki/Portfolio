@@ -9,18 +9,20 @@ import CustomCursor from './components/CustomCursor';
 
 const App = () => {
   return (
-    <div>
+    <div className="overflow-hidden">
       <CustomCursor />
-      <main className="max-w-7xl mx-auto relative">
-        <Navbar />
-        <Hero />
-        <About />
-        <Projects />
-        
-        
-        <Contact />
-        <Footer />
-      </main>
+      <div className="container mx-auto px-4">
+        <main className="max-w-[2000px] mx-auto relative">
+          <Navbar />
+          <Hero />
+          <About />
+          <Projects />
+          
+          
+          <Contact />
+          <Footer />
+        </main>
+      </div>
     </div>
   );
 };

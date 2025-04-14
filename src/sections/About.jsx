@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import Globe from 'react-globe.gl';
+import MagnifyText from '../components/MagnifyText.jsx';
 
-import Button from '../components/Button.jsx';
+
+
 
 const About = () => {
   const [hasCopied, setHasCopied] = useState(false);
@@ -15,6 +17,14 @@ const About = () => {
     }, 2000);
   };
 
+  const handleContactClick = (e) => {
+    e.preventDefault();
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="c-space my-20 hover-target" id="about">
       <div className="grid xl:grid-cols-3 xl:grid-rows-6 md:grid-cols-2 grid-cols-1 gap-5 h-full">
@@ -23,10 +33,11 @@ const About = () => {
             <img src="assets/grid1.png" alt="grid-1" className="w-full sm:h-[276px] h-fit object-contain" />
 
             <div>
-              <p className="grid-headtext">Hi, I’m Srihari Kulkarni</p>
-              <p className="grid-subtext">
-                I am a 3rd year CSE undergrad based in Karnataka. I am a passionate Frontend Web Developer and passionate about learning new technologies.
-              </p>
+              <p className="grid-headtext">Hi, I'm Srihari Kulkarni</p>
+              <MagnifyText
+                text="I am a 3rd year CSE undergrad based in Karnataka. I am a passionate Frontend Web Developer and passionate about learning new technologies."
+                className="grid-subtext"
+              />
             </div>
           </div>
         </div>
@@ -37,10 +48,10 @@ const About = () => {
 
             <div>
               <p className="grid-headtext">Tech Stack</p>
-              <p className="grid-subtext">
-                I specialize in a variety of languages, frameworks, and tools that allow me to build robust and scalable
-                applications
-              </p>
+              <MagnifyText
+                text="I specialize in a variety of languages, frameworks, and tools that allow me to build robust and scalable applications"
+                className="grid-subtext"
+              />
             </div>
           </div>
         </div>
@@ -61,9 +72,18 @@ const About = () => {
               />
             </div>
             <div>
-              <p className="grid-headtext">I’m very flexible with time zone communications & locations</p>
-              <p className="grid-subtext">I&apos;m based in Gangavati, Karnataka and open to remote work worldwide.</p>
-              <Button name="Contact Me" isBeam containerClass="w-full mt-10" />
+              <p className="grid-headtext">I'm very flexible with time zone communications & locations</p>
+              <MagnifyText
+                text="I'm based in Gangavati, Karnataka and open to remote work worldwide."
+                className="grid-subtext"
+              />
+              <div className="flex justify-center mt-8">
+                <a href="#contact" onClick={handleContactClick}>
+                  <button className="w-fit min-w-[250px] px-8 h-11 rounded-xl bg-neutral-800 text-white font-medium hover:bg-neutral-700 transform transition-all duration-200 ease-in-out hover:scale-105 active:scale-95 focus:outline-none">
+                    Contact Me
+                  </button>
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -74,10 +94,10 @@ const About = () => {
 
             <div>
               <p className="grid-headtext">My Passion for Coding</p>
-              <p className="grid-subtext">
-                I love solving problems and building things through code. Programming isn&apos;t just my
-                profession—it&apos;s my passion. I enjoy exploring new technologies, and enhancing my skills.
-              </p>
+              <MagnifyText
+                text="I love solving problems and building things through code. Programming isn't just my profession—it's my passion. I enjoy exploring new technologies, and enhancing my skills."
+                className="grid-subtext"
+              />
             </div>
           </div>
         </div>

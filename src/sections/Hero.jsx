@@ -7,12 +7,14 @@ import { PerspectiveCamera } from '@react-three/drei';
 import Cube from '../components/Cube.jsx';
 import Rings from '../components/Rings.jsx';
 import ReactLogo from '../components/ReactLogo.jsx';
-import Button from '../components/Button.jsx';
+import { RainbowButton } from '../components/ui/rainbow-button';
 import Target from '../components/Target.jsx';
 import CanvasLoader from '../components/Loading.jsx';
 import HeroCamera from '../components/HeroCamera.jsx';
 import { calculateSizes } from '../constants/index.js';
 import { HackerRoom } from '../components/HackerRoom.jsx';
+import MagnifyText from '../components/MagnifyText.jsx';
+
 
 const Hero = () => {
   // Use media queries to determine screen size
@@ -23,11 +25,20 @@ const Hero = () => {
   const sizes = calculateSizes(isSmall, isMobile, isTablet);
 
   return (
-    <section className="min-h-screen w-full flex flex-col relative" id="home">
-      <div className="w-full mx-auto flex flex-col sm:mt-36 mt-20 c-space gap-3">
-        <p className="sm:text-3xl text-xl font-medium text-white text-center font-generalsans">
-          Hi, I am Srihari<span className="waving-hand">👋</span>
-        </p>
+    <section className="min-h-screen w-full flex flex-col relative overflow-hidden" id="home">
+     
+      
+      <div className="w-full mx-auto flex flex-col sm:mt-36 mt-20 c-space gap-3 relative z-10">
+        <div className="sm:text-3xl text-xl font-medium text-white text-center font-generalsans">
+          <MagnifyText 
+            text="Hi, I am Srihari" 
+            tag="p" 
+            className="inline-block" 
+            characterLevel={true}
+            scale={1.5}
+          />
+          <span className="waving-hand">👋</span>
+        </div>
         <p className="hero_tag text-gray_gradient">An aspiring Web Developer</p>
       </div>
 
@@ -55,11 +66,9 @@ const Hero = () => {
         </Canvas>
       </div>
 
-      <div className="absolute bottom-7 left-0 right-0 w-full z-10 c-space">
-        
+      <div className="absolute bottom-7 left-0 right-0 w-full z-10 flex justify-center">
         <a
           href="./assets/resume.pdf"
-          className="w-fit"
           onClick={(e) => {
             e.preventDefault();
             const link = document.createElement('a');
@@ -71,7 +80,9 @@ const Hero = () => {
             document.body.removeChild(link);
           }}
         >
-          <Button name="Get the Resume" isBeam containerClass="sm:w-fit w-full sm:min-w-96" />
+          <RainbowButton className="w-fit min-w-[250px] px-8 size-16">
+            Get the Resume
+          </RainbowButton>
         </a>
       </div>
     </section>
